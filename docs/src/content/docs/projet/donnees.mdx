@@ -1,0 +1,57 @@
+---
+title: Les données
+description: Ce que contient un enregistrement et d'où viennent les données.
+---
+
+## Un enregistrement = un fichier CSV
+
+Chaque geste est enregistré dans un petit fichier CSV de **75 lignes** (75
+instants) et **6 colonnes** (6 mesures).
+
+```csv title="dataset_group3/circle/3_Circle_1.csv (début)"
+acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z
+0.0751,0.2373,-0.0673,0.1682,-0.2649,0.1159
+0.0670,0.3114,0.3657,0.1682,-0.2649,0.1575
+...
+```
+
+| Colonne | Signification simple |
+| --- | --- |
+| `acc_x`, `acc_y`, `acc_z` | **Accéléromètre** : dans quelle direction le bras est poussé. |
+| `gyro_x`, `gyro_y`, `gyro_z` | **Gyroscope** : à quelle vitesse le bras tourne. |
+
+On peut voir un enregistrement comme un **petit film de 75 images**, où chaque
+image contient 6 nombres.
+
+## 4 groupes, 2 100 gestes
+
+| Groupe | Enregistrements | Nom des dossiers |
+| --- | --- | --- |
+| group1 | 600 | `circle`, `hor`, `vert` |
+| group2 | 600 | `circle`, `horizontal`, `vertical` |
+| group3 | 300 | `circle`, `horizontal`, `vertical` |
+| group5 | 600 | `circle`, `hor`, `ver` |
+| **Total** | **2 100** | 700 par geste |
+
+:::note[Petit piège]
+Chaque groupe a nommé ses dossiers et ses colonnes à sa façon (`hor`,
+`horizontal`…, `aX` ou `acc_x`…). Au chargement, on **unifie** ces noms pour
+obtenir un seul grand dataset commun.
+:::
+
+## À quoi ressemble un geste ?
+
+Voici le signal moyen d'un **cercle** pour chaque groupe. On voit que tout le
+monde ne fait pas le cercle de la même manière : c'est ce qui rendra le
+problème intéressant plus tard.
+
+![Signal moyen d'un cercle par groupe](/images/04_signal_moyen_circle.png)
+
+<details>
+<summary>Voir aussi les gestes horizontal et vertical</summary>
+
+![Signal moyen horizontal](/images/04_signal_moyen_horizontal.png)
+
+![Signal moyen vertical](/images/04_signal_moyen_vertical.png)
+
+</details>

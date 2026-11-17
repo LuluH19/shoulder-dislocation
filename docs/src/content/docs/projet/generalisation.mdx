@@ -1,0 +1,51 @@
+---
+title: Un modèle pour tout le monde ?
+description: Ce qui se passe quand le modèle rencontre un groupe qu'il n'a jamais vu.
+---
+
+La vraie question pour un objet connecté : **le modèle fonctionne-t-il avec une
+nouvelle personne ?**
+
+## Un modèle par groupe : ça ne suffit pas
+
+On entraîne un modèle sur un seul groupe, puis on le teste sur les autres.
+
+![Accuracy croisée entre groupes](/images/03_matrice_croisee.png)
+
+- La **diagonale** (même groupe) est proche de 100 %.
+- **Hors diagonale**, ça chute parfois fort : le modèle de group2 ne reconnaît
+  que 26 % des gestes de group5.
+
+Chaque groupe a appris *sa* façon de faire le geste, pas *le* geste.
+
+## Pourquoi les groupes sont-ils si différents ?
+
+Surtout à cause du **cercle** :
+
+- certains groupes font **1 tour**, d'autres **2 tours** dans le même temps ;
+- le capteur n'est pas **orienté** pareil sur le bras ;
+- group5 a pré-traité ses données différemment (valeurs entre 0 et 1).
+
+![Vitesse du cercle selon les groupes](/images/05_vitesse_circle.png)
+
+![Corrélation entre axes](/images/06_correlation_axes.png)
+
+## La solution : un grand dataset commun
+
+En entraînant **sur tous les groupes à la fois**, le modèle voit plusieurs
+façons de faire chaque geste. Pour tester honnêtement, on retire un groupe
+entier de l'entraînement et on teste dessus :
+
+| Groupe jamais vu | Accuracy | Commentaire |
+| --- | --- | --- |
+| group1 | 96 % | Très bien. |
+| group3 | 93 % | Très bien. |
+| group2 | 71 % | Les cercles posent problème. |
+| group5 | 40 % | Données préparées autrement. |
+
+:::tip[Conclusion]
+Plus le dataset contient de personnes et de styles différents, mieux le modèle
+s'adapte à quelqu'un de nouveau. Le dataset commun est la bonne direction ; les
+prochaines étapes seraient d'harmoniser la préparation de group5 et d'ajouter
+encore des personnes.
+:::

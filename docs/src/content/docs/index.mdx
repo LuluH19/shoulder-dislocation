@@ -1,0 +1,37 @@
+---
+title: Reconnaître un geste avec un capteur
+description: Comment un petit réseau de neurones reconnaît un cercle, un geste horizontal ou vertical à partir d'un capteur de mouvement.
+template: splash
+hero:
+  tagline: Un capteur sur le bras, 75 mesures, un petit réseau de neurones… et la carte devine quel geste vous venez de faire.
+  actions:
+    - text: Comprendre en 5 minutes
+      link: /projet/vue-ensemble/
+      icon: right-arrow
+    - text: Voir les résultats
+      link: /projet/resultats/
+      icon: seti:graphql
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Le projet en bref
+
+<CardGrid stagger>
+	<Card title="3 gestes" icon="random">
+		**circle** (un cercle), **horizontal** (gauche-droite) et **vertical**
+		(haut-bas).
+	</Card>
+	<Card title="2 100 enregistrements" icon="document">
+		Collectés par 4 groupes, chacun avec son capteur et sa façon de faire le
+		geste.
+	</Card>
+	<Card title="100 % de réussite" icon="approve-check">
+		Sur les enregistrements de test, quand le modèle connaît déjà les
+		groupes.
+	</Card>
+	<Card title="31 Ko" icon="rocket">
+		La taille du modèle compressé, assez petit pour tourner sur un ESP32.
+	</Card>
+</CardGrid>

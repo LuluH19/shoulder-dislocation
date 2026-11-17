@@ -1,0 +1,50 @@
+---
+title: Entraînement et résultats
+description: Comment le modèle apprend et comment on mesure sa qualité.
+---
+
+## Comment le modèle apprend
+
+L'entraînement se répète **40 fois** sur tout le dataset (40 *époques*). À
+chaque passage :
+
+1. le modèle devine le geste de 32 enregistrements (un *lot*) ;
+2. on mesure son erreur (la *loss*) ;
+3. on ajuste un peu ses paramètres pour faire moins d'erreurs la prochaine fois.
+
+```text
+epoch 10  loss 0.006  acc test 100.00%
+epoch 20  loss 0.004  acc test 99.76%
+epoch 30  loss 0.002  acc test 100.00%
+epoch 40  loss 0.002  acc test 100.00%
+```
+
+La **loss** baisse : le modèle se trompe de moins en moins. L'**accuracy** sur
+le test reste à 100 % : il reconnaît bien des gestes qu'il n'a jamais vus.
+
+## Les métriques, simplement
+
+| Métrique | Question à laquelle elle répond | Résultat |
+| --- | --- | --- |
+| **Accuracy** | Sur 100 gestes, combien sont bien reconnus ? | 100 % |
+| **Precision** | Quand le modèle dit « cercle », a-t-il raison ? | 100 % |
+| **Recall** | Parmi tous les vrais cercles, combien sont retrouvés ? | 100 % |
+| **F1** | Un compromis entre precision et recall. | 100 % |
+
+## La matrice de confusion
+
+Elle montre, pour chaque vrai geste (lignes), ce que le modèle a prédit
+(colonnes). Tout est sur la diagonale : **aucune erreur** sur les 420 gestes de
+test.
+
+|  | prédit circle | prédit horizontal | prédit vertical |
+| --- | --- | --- | --- |
+| **vrai circle** | **140** | 0 | 0 |
+| **vrai horizontal** | 0 | **140** | 0 |
+| **vrai vertical** | 0 | 0 | **140** |
+
+:::caution[Attention à ne pas trop s'emballer]
+Ce 100 % est obtenu en mélangeant tous les groupes dans l'entraînement **et**
+dans le test. Le modèle a donc déjà vu « le style » de chaque groupe. La page
+suivante explique ce qui se passe face à un groupe totalement inconnu.
+:::

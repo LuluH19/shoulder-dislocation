@@ -1,0 +1,40 @@
+---
+title: Préparer les données
+description: Normalisation et découpage entraînement / test.
+---
+
+Avant d'apprendre, il faut rendre les données **comparables** et garder une
+partie de côté pour **vérifier** le modèle.
+
+## 1. La normalisation : garder la forme, oublier la force
+
+Une personne peut faire un grand cercle rapide, une autre un petit cercle lent.
+Pour le modèle, c'est pourtant le même geste.
+
+On transforme donc chaque axe de chaque enregistrement pour qu'il ait :
+
+- une **moyenne de 0** (le signal est centré),
+- un **écart-type de 1** (le signal a toujours la même « hauteur »).
+
+```python
+def normaliser(signal):
+    return (signal - signal.mean(0)) / (signal.std(0) + 1e-8)
+```
+
+:::tip[Image mentale]
+C'est comme ajuster le zoom d'une photo : on ne change pas le dessin, on le
+remet juste à la même taille que les autres.
+:::
+
+## 2. Le découpage : 80 % pour apprendre, 20 % pour vérifier
+
+Si on testait le modèle sur les gestes qu'il a appris, ce serait comme donner
+à un élève les réponses avant l'examen.
+
+| Partie | Taille | Rôle |
+| --- | --- | --- |
+| Entraînement | 1 680 gestes (80 %) | Le modèle apprend dessus. |
+| Test | 420 gestes (20 %) | Le modèle ne les voit **jamais** pendant l'apprentissage. |
+
+Le découpage est **stratifié** : il y a autant de cercles, d'horizontaux et de
+verticaux dans chaque partie.
