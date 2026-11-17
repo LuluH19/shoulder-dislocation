@@ -1,0 +1,40 @@
+{
+  "methode": "min-max par colonne sur tous les CSV sources",
+  "source": "/home/thomas/Bureau/IOT et IA/IOT_IA/dataset",
+  "nombre_fichiers": 600,
+  "colonnes_normalisees": [
+    "X",
+    "Y",
+    "Z",
+    "GX",
+    "GY",
+    "GZ"
+  ],
+  "bornes": {
+    "X": {
+      "min": -2.0,
+      "max": 1.99994
+    },
+    "Y": {
+      "min": -2.0,
+      "max": 1.99994
+    },
+    "Z": {
+      "min": -2.0,
+      "max": 1.99994
+    },
+    "GX": {
+      "min": -250.13741,
+      "max": 250.12978
+    },
+    "GY": {
+      "min": -250.13741,
+      "max": 250.12978
+    },
+    "GZ": {
+      "min": -250.13741,
+      "max": 250.12978
+    }
+  },
+  "colonne_constante": 0.0
+}
