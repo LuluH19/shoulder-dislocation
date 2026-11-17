@@ -227,8 +227,8 @@ def axes_comparison(rows, path, holdout):
     for b in (b1, b2):
         ax.bar_label(b, fmt="%.0f", fontsize=9, color=TEXT_COLOR)
     ax.set_xticks(x, labels, fontsize=8)
-    ax.set_ylim(0, 115)
+    ax.set_ylim(0, 128)
     ax.set_ylabel("accuracy (%)")
     ax.set_title(f"Meilleure combinaison d'axes (classée sur {holdout})")
-    ax.legend(frameon=False, fontsize=9)
+    ax.legend(frameon=False, fontsize=9, loc="upper left", ncol=2)
     return _save(fig, path)
