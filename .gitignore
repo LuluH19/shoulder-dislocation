@@ -1,0 +1,5 @@
+arduino/
+models/movements.onnx
+models/scaler.json
+models/movements.pt
+__pycache__/
