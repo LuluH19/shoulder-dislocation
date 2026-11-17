@@ -63,15 +63,20 @@ def _run_epoch(model, loader, loss_fn, optimizer=None):
     return total_loss / total, correct / total
 
 
-def fit(X_train, y_train, X_val=None, y_val=None, config=None, verbose=False):
+def fit(X_train, y_train, X_val=None, y_val=None, config=None, verbose=False, init_model=None):
     """Entraîne un CNN1D sur des signaux déjà normalisés (n, 75, axes).
 
     Avec un jeu de validation, on garde l'époque dont la loss de validation est
-    la plus basse ; sinon, la dernière. Renvoie (modèle en mode évaluation, historique).
+    la plus basse ; sinon, la dernière. Avec init_model, on repart de ses poids
+    (une copie : init_model n'est pas modifié) au lieu de poids aléatoires.
+    Renvoie (modèle en mode évaluation, historique).
     """
     config = config or TrainConfig()
     torch.manual_seed(config.seed)
-    model = CNN1D(n_channels=np.asarray(X_train).shape[2], widths=config.widths)
+    if init_model is not None:
+        model = copy.deepcopy(init_model)
+    else:
+        model = CNN1D(n_channels=np.asarray(X_train).shape[2], widths=config.widths)
     loss_fn = nn.CrossEntropyLoss()
     optimizer = torch.optim.AdamW(model.parameters(), lr=config.lr, weight_decay=config.weight_decay)
     train_loader = DataLoader(GestureDataset(X_train, y_train, augment=config.augment),

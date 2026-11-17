@@ -22,6 +22,13 @@ def test_fit_learns_an_easy_problem_and_round_trips(tmp_path):
     assert (predict(model, X)[0] == y).mean() > 0.9
     assert len(history["val_loss"]) == 15
 
+    # repartir d'un modèle : on obtient une copie entraînée, l'original n'est pas modifié
+    before = {k: v.clone() for k, v in model.state_dict().items()}
+    continued, _ = fit(X, y, X, y, TrainConfig(epochs=2, seed=1), init_model=model)
+    assert continued is not model
+    assert all(torch.equal(before[k], v) for k, v in model.state_dict().items())
+    assert (predict(continued, X)[0] == y).mean() > 0.9
+
     path = tmp_path / "m.pt"
     save_model(path, model, TrainConfig())
     loaded, ckpt = load_model(path)

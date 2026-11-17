@@ -216,6 +216,25 @@ def axis_correlations(by_class_group, path, ref=None):
     return _save(fig, path)
 
 
+def grouped_accuracy(table, path, title):
+    """Barres groupées. table = {nom du modèle: {colonne: accuracy entre 0 et 1}}."""
+    models = list(table)
+    columns = list(next(iter(table.values())))
+    width = 0.8 / len(models)
+    colors = [OTHER_COLORS[0], REF_COLOR, OTHER_COLORS[1], OTHER_COLORS[2]]
+    fig, ax = plt.subplots(figsize=(1.7 * len(columns) + 3, 4.5))
+    for i, m in enumerate(models):
+        x = np.arange(len(columns)) + (i - (len(models) - 1) / 2) * width
+        bars = ax.bar(x, [table[m][c] * 100 for c in columns], width * 0.95, color=colors[i % len(colors)], label=m)
+        ax.bar_label(bars, fmt="%.0f", fontsize=8, color=TEXT_COLOR)
+    ax.set_xticks(range(len(columns)), columns)
+    ax.set_ylim(0, 125)
+    ax.set_ylabel("accuracy (%)")
+    ax.set_title(title)
+    ax.legend(frameon=False, fontsize=9, loc="upper left", ncol=len(models))
+    return _save(fig, path)
+
+
 # ---------------------------------------------------------------- choix des axes
 def axes_comparison(rows, path, holdout):
     """Meilleure combinaison pour chaque nombre d'axes. rows = [{n_axes, axes, acc_test, acc_holdout}]."""

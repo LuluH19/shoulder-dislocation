@@ -24,23 +24,23 @@ de précision, mais le résultat ne change pas.
 
 ## Exporter vers Arduino
 
-Le script `scripts/export_firmware.py` écrit les paramètres du modèle dans un
-fichier C : `firmware/movement_classifier/model_weights.h`.
+Le notebook écrit automatiquement les paramètres du modèle dans un fichier C :
+`arduino/reconnaissance_mouvement/model_weights.h`.
 
 ```c title="model_weights.h (extrait)"
+#define N_AXES 6
+#define N_STEPS 75
 #define N_CLASSES 3
-static const char* const CLASS_NAMES[N_CLASSES] = {"circle", "horizontal", "vertical"};
-
-// 16x6x5
-static const float CNN_W1[480] = { 5.08843064e-02f, 6.04607344e-01f, ... };
+static const char* CLASSES[N_CLASSES] = {"circle", "horizontal", "vertical"};
+static const float conv1_w[960] = { 2.799e-01f, 3.789e-01f, ... };
 ```
 
-Deux astuces rendent la carte plus rapide et plus sûre :
+Deux astuces rendent la carte plus rapide :
 
 - **La BatchNorm est fusionnée** dans les convolutions : un calcul en moins à
   chaque mesure.
-- **Un test automatique** (`tests/test_firmware.py`) compile le code C de la
-  carte et vérifie qu'il donne les mêmes probabilités que PyTorch.
+- **Un enregistrement de test** est inclus avec la réponse attendue de
+  PyTorch : la carte peut vérifier toute seule qu'elle calcule la même chose.
 
 ## Sur la carte, en temps réel
 

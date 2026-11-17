@@ -10,4 +10,4 @@ npm run build    # génère le site statique dans dist/
 
 - Pages : `src/content/docs/` (Markdown / MDX)
 - Menu : `astro.config.mjs`
-- Images : `public/images/` (copiées depuis `../results/groups/`)
+- Images : `public/images/` (copiées depuis `../screenshot/`)

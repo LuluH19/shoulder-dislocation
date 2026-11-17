@@ -64,7 +64,9 @@ Sur la carte, le moniteur série (115200 bauds) affiche le geste reconnu. Câbla
 MPU6050 : SDA sur la broche 8, SCL sur la broche 9.
 
 Options utiles de `train.py` : `--holdout-group group3` (teste sur un groupe jamais vu),
-`--epochs 80`, `--test-data autre/dossier`. Toutes les options : `python scripts/train.py --help`.
+`--pretrain-group group3` (apprend group3 seul d'abord, puis tous les groupes, et compare avec
+un entraînement direct), `--epochs 80`, `--test-data autre/dossier`.
+Toutes les options : `python scripts/train.py --help`.
 
 ### Expériences
 
