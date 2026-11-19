@@ -1,0 +1,50 @@
+{
+  "test": {
+    "title": "Test interne",
+    "n": 315,
+    "accuracy": 0.9968253968253968,
+    "precision_macro": 0.9968553459119497,
+    "recall_macro": 0.9968253968253968,
+    "f1_macro": 0.9968253248372978,
+    "per_class": {
+      "circle": {
+        "precision": 1.0,
+        "recall": 0.9904761904761905,
+        "f1": 0.9952153110047847,
+        "correct": 104,
+        "total": 105
+      },
+      "horizontal": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "correct": 105,
+        "total": 105
+      },
+      "vertical": {
+        "precision": 0.9905660377358491,
+        "recall": 1.0,
+        "f1": 0.9952606635071091,
+        "correct": 105,
+        "total": 105
+      }
+    },
+    "confusion": [
+      [
+        104,
+        0,
+        1
+      ],
+      [
+        0,
+        105,
+        0
+      ],
+      [
+        0,
+        0,
+        105
+      ]
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "test": {
+    "title": "Test sur group3 (jamais vu), pré-entraîné sur group2",
+    "n": 300,
+    "accuracy": 0.9666666666666667,
+    "precision_macro": 0.9696969696969697,
+    "recall_macro": 0.9666666666666667,
+    "f1_macro": 0.9665831244778613,
+    "per_class": {
+      "circle": {
+        "precision": 1.0,
+        "recall": 0.9,
+        "f1": 0.9473684210526316,
+        "correct": 90,
+        "total": 100
+      },
+      "horizontal": {
+        "precision": 0.9090909090909091,
+        "recall": 1.0,
+        "f1": 0.9523809523809523,
+        "correct": 100,
+        "total": 100
+      },
+      "vertical": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "correct": 100,
+        "total": 100
+      }
+    },
+    "confusion": [
+      [
+        90,
+        10,
+        0
+      ],
+      [
+        0,
+        100,
+        0
+      ],
+      [
+        0,
+        0,
+        100
+      ]
+    ]
+  },
+  "pretraining": {
+    "group": "group2",
+    "pretrain_epochs": 30,
+    "accuracy": {
+      "group2 seul": {
+        "test complet": 0.6833333333333333,
+        "group3": 0.6833333333333333
+      },
+      "group2 puis tous": {
+        "test complet": 0.9666666666666667,
+        "group3": 0.9666666666666667
+      },
+      "tous directement": {
+        "test complet": 0.9533333333333334,
+        "group3": 0.9533333333333334
+      }
+    }
+  }
+}
